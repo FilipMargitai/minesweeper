@@ -2,4 +2,4 @@
 
 Good old minesweeper, remade in C# and displayed only using console
 
-Projekt started on 15th September 2020
+Project started on 15th September 2020
