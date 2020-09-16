@@ -10,5 +10,11 @@ namespace Minesweeper
         public int y { get; }
         public int surrounding { get; set; }
         public bool isBomb { get; }
+        public Square(int _x, int _y, bool _isBomb)
+        {
+            x = _x;
+            y = _y;
+            isBomb = _isBomb;
+        }
     }
 }
