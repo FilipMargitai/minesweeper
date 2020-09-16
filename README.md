@@ -1,4 +1,4 @@
-# minesweeper
+# Minesweeper
 
 Good old minesweeper, remade in C# and displayed only using console
 
