@@ -16,12 +16,20 @@ namespace Minesweeper
             bombQuantity = _bombQuantity;
 
             mineField = new Square[_height, _width];
+
+            randomNumb = new Random();
         }
         public void GenerateField()
         {
-            for (int i = 0; i < bombQuantity; i++)
+            for (int i = 0; i < bombQuantity;)
             {
-                //mineField[randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1))] = new Square(true);
+                int randomX = randomNumb.Next(mineField.GetLength(0));
+                int randomY = randomNumb.Next(mineField.GetLength(1));
+                if(mineField[randomX, randomY] == null)
+                {
+                    mineField[randomX, randomY] = new Square(true);
+                    i++;
+                }
                 //mineField.SetValue(new Square(true), randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1)));
             }
         }
@@ -52,8 +60,8 @@ namespace Minesweeper
         {
             foreach(Square square in mineField)
             {
-                if (square == null) Console.Write("null ");
-                else Console.Write("gut ");
+                if (square == null) Console.Write("n ");
+                else Console.Write("g ");
             }
         }
     }
