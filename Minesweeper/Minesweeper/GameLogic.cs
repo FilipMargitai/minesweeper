@@ -10,7 +10,7 @@ namespace Minesweeper
         private int bombQuantity { get; }
         //private List<Square> mineField { get; set; }
         private Square[,] mineField { get; set; }
-        private Random randomNumb { get; set; }
+        private static Random randomNumb { get; set; }
         public GameLogic(int _height = 9, int _width = 9, int _bombQuantity = 14)
         {
             bombQuantity = _bombQuantity;
@@ -21,7 +21,8 @@ namespace Minesweeper
         {
             for (int i = 0; i < bombQuantity; i++)
             {
-                mineField[randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1))] = new Square(true);
+                //mineField[randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1))] = new Square(true);
+                //mineField.SetValue(new Square(true), randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1)));
             }
         }
         public void PrintArray()
@@ -46,6 +47,14 @@ namespace Minesweeper
             if (square.isHidden) return "-";
             else if (square.isBomb) return "x";
             return square.surrounding.ToString();
+        }
+        public void PrintTestNull()
+        {
+            foreach(Square square in mineField)
+            {
+                if (square == null) Console.Write("null ");
+                else Console.Write("gut ");
+            }
         }
     }
 }
