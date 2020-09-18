@@ -11,6 +11,8 @@ namespace Minesweeper
             test.GenerateField();
 
             test.PrintArray();
+
+            Console.ReadKey();
         }
     }
 }

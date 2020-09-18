@@ -33,5 +33,13 @@ namespace Minesweeper
                 surrounding++;
             }
         }
+        public void ClickSquare()
+        {
+            // TODO
+        }
+        public void ClickFlag()
+        {
+            // TODO
+        }
     }
 }
