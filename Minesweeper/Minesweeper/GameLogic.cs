@@ -39,6 +39,7 @@ namespace Minesweeper
                     if(mineField[i, j] == null)
                     {
                         mineField[i, j] = new Square(false);
+                        mineField[i, j].GetSurrounding(mineField, i, j);
                     }
                 }
             }
@@ -66,14 +67,15 @@ namespace Minesweeper
             else if (square.isBomb) return "x";
             return Convert.ToString(square.surrounding);
         }
-        public void PrintTestNull()
-        {
-            foreach(Square square in mineField)
-            {
-                if (square == null) Console.Write("n ");
-                else if (square.isBomb) Console.Write("b ");
-                else if(!square.isBomb) Console.Write("- ");
-            }
-        }
+
+        //public void PrintTestNull()
+        //{
+        //    foreach(Square square in mineField)
+        //    {
+        //        if (square == null) Console.Write("n ");
+        //        else if (square.isBomb) Console.Write("b ");
+        //        else if(!square.isBomb) Console.Write("- ");
+        //    }
+        //}
     }
 }

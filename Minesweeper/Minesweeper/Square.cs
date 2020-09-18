@@ -15,7 +15,7 @@ namespace Minesweeper
             isHidden = true;
             surrounding = 0; // error killer
         }
-        public void GetSurrounding()
+        public void GetSurrounding(Square[,] squareArray, int position0, int position1)
         {
             //TODO
         }
