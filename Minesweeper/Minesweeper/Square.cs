@@ -12,12 +12,26 @@ namespace Minesweeper
         public Square(bool _isBomb)
         {
             isBomb = _isBomb;
-            isHidden = true;
+            isHidden = false;
             surrounding = 0; // error killer
         }
-        public void GetSurrounding(Square[,] squareArray, int position0, int position1)
+        public void GetSurrounding(Square[,] squareArray, int p0, int p1) // position0, position1
         {
-            //TODO
+            if (p0 - 1 >= 0 && p1 - 1 >= 0) TestBomb(squareArray, p0 - 1, p1 - 1);
+            if (p1 - 1 >= 0) TestBomb(squareArray, p0, p1 - 1);
+            if (p0 + 1 < squareArray.GetLength(0) && p1 - 1 >= 0) TestBomb(squareArray, p0 + 1, p1 - 1);
+            if (p0 - 1 >= 0) TestBomb(squareArray, p0 - 1 , p1);
+            if (p0 + 1 < squareArray.GetLength(0)) TestBomb(squareArray, p0 + 1, p1);
+            if (p0 - 1 >= 0 && p1 + 1 < squareArray.GetLength(1)) TestBomb(squareArray, p0 - 1, p1 + 1);
+            if (p1 + 1 < squareArray.GetLength(1)) TestBomb(squareArray, p0, p1 + 1);
+            if (p0 + 1 < squareArray.GetLength(1) && p1 + 1 < squareArray.GetLength(1)) TestBomb(squareArray, p0 + 1, p1 + 1);
+        }
+        private void TestBomb(Square[,] squareArray, int surroundin0, int surroundin1)
+        {
+            if(squareArray[surroundin0, surroundin1].isBomb)
+            {
+                surrounding++;
+            }
         }
     }
 }

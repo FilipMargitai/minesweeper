@@ -21,7 +21,7 @@ namespace Minesweeper
         }
         public void GenerateField()
         {
-            for (int i = 0; i < bombQuantity;)
+            for (int i = 0; i < bombQuantity;) // bomb generation
             {
                 int randomX = randomNumb.Next(mineField.GetLength(0));
                 int randomY = randomNumb.Next(mineField.GetLength(1));
@@ -32,15 +32,21 @@ namespace Minesweeper
                 }
                 //mineField.SetValue(new Square(true), randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1)));
             }
-            for (int i = 0; i < mineField.GetLength(0); i++)
+            for (int i = 0; i < mineField.GetLength(0); i++) // filling up non bomb squares
             {
                 for(int j = 0; j < mineField.GetLength(1); j++)
                 {
                     if(mineField[i, j] == null)
                     {
                         mineField[i, j] = new Square(false);
-                        mineField[i, j].GetSurrounding(mineField, i, j);
                     }
+                }
+            }  
+            for (int i = 0; i < mineField.GetLength(0); i++) // filling up surrounding
+            {
+                for(int j = 0; j < mineField.GetLength(1); j++)
+                {
+                    mineField[i, j].GetSurrounding(mineField, i, j);
                 }
             }
         }
@@ -70,11 +76,11 @@ namespace Minesweeper
 
         //public void PrintTestNull()
         //{
-        //    foreach(Square square in mineField)
+        //    foreach (Square square in mineField)
         //    {
         //        if (square == null) Console.Write("n ");
         //        else if (square.isBomb) Console.Write("b ");
-        //        else if(!square.isBomb) Console.Write("- ");
+        //        else if (!square.isBomb) Console.Write("- ");
         //    }
         //}
     }
