@@ -73,22 +73,26 @@ namespace Minesweeper
         }
         private string PrintBomb(Square square)
         {
-            if (square.isHidden) return "-";
-            else if (square.isBomb) return "x";
+            if (square.isFlaged) return "🏴";
+            else if (square.isHidden) return "-";
+            else if(square.isBomb) return "x";
             return Convert.ToString(square.surrounding);
         }
         private void ChoseColor(Square square)
         {
-            if (square.isBomb && !square.isHidden)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
-            else if (!square.isBomb && !square.isHidden)
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-            }
+            if (square.isFlaged) Console.ForegroundColor = ConsoleColor.Blue;
+            else if (square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.Red;
+            else if (!square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.White;
             else Console.ForegroundColor = ConsoleColor.Gray;
         }
+        //public bool ClickSquare(int x, int y)
+        //{
+        //    if(mineField[x, y].ClickSquare())
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
         //public void PrintTestNull()
         //{

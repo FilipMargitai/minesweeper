@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Minesweeper
 {
@@ -12,7 +13,16 @@ namespace Minesweeper
 
             test.PrintArray();
 
-            Console.ReadKey();
+            //for(int i = 0; i < 15; i++)
+            //{
+            //    Console.WriteLine();
+            //    int x = int.Parse(Console.ReadLine());
+            //    int y = int.Parse(Console.ReadLine());
+
+            //    Console.Clear();
+            //    if (test.ClickSquare(x, y)) test.PrintArray();
+            //    else break;
+            //}
         }
     }
 }
