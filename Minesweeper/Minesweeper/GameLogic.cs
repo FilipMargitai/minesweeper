@@ -50,7 +50,7 @@ namespace Minesweeper
             {
                 if (i < mineField.GetLength(1))
                 {
-                    Console.Write(PrintBomb(square));
+                    Console.Write(PrintBomb(square) + " ");
                     i++;
                 }
                 else
@@ -64,7 +64,7 @@ namespace Minesweeper
         {
             if (square.isHidden) return "-";
             else if (square.isBomb) return "x";
-            return square.surrounding.ToString();
+            return Convert.ToString(square.surrounding);
         }
         public void PrintTestNull()
         {

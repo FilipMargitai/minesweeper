@@ -8,10 +8,10 @@ namespace Minesweeper
         {
             Console.WriteLine("Hello World!");
 
-            GameLogic test = new GameLogic(3, 3, 8);
+            GameLogic test = new GameLogic(3, 3, 4);
             test.GenerateField();
 
-            test.PrintTestNull();
+            test.PrintArray();
         }
     }
 }
