@@ -57,13 +57,17 @@ namespace Minesweeper
             {
                 if (i < mineField.GetLength(1))
                 {
-                    Console.Write(PrintBomb(square) + " ");
+                    ChoseColor(square);
+
+                    Console.Write(PrintBomb(square) + "   ");
                     i++;
                 }
                 else
                 {
+                    ChoseColor(square);
+
                     i = 1;
-                    Console.Write("\n" + PrintBomb(square) + " ");
+                    Console.Write("\n\n" + PrintBomb(square) + "   ");
                 }
             }
         }
@@ -72,6 +76,18 @@ namespace Minesweeper
             if (square.isHidden) return "-";
             else if (square.isBomb) return "x";
             return Convert.ToString(square.surrounding);
+        }
+        private void ChoseColor(Square square)
+        {
+            if (square.isBomb && !square.isHidden)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else if (!square.isBomb && !square.isHidden)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         //public void PrintTestNull()
