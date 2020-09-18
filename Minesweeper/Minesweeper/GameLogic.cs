@@ -9,8 +9,11 @@ namespace Minesweeper
     {
         private int bombQuantity { get; }
         //private List<Square> mineField { get; set; }
-        private Square[,] mineField { get; set; }
+        public Square[,] mineField { get; set; }
         private static Random randomNumb { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
+        public bool gameOver { get; set; }
         public GameLogic(int _height = 9, int _width = 9, int _bombQuantity = 14)
         {
             bombQuantity = _bombQuantity;
@@ -59,7 +62,9 @@ namespace Minesweeper
                 {
                     ChoseColor(square);
 
-                    Console.Write(PrintBomb(square) + "   ");
+                    Console.Write(PrintBomb(square));
+                    if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write("  ");
                     i++;
                 }
                 else
@@ -67,7 +72,9 @@ namespace Minesweeper
                     ChoseColor(square);
 
                     i = 1;
-                    Console.Write("\n\n" + PrintBomb(square) + "   ");
+                    Console.Write("\n\n" + PrintBomb(square));
+                    if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write("  ");
                 }
             }
         }
@@ -84,7 +91,15 @@ namespace Minesweeper
             else if (square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.Red;
             else if (!square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.White;
             else Console.ForegroundColor = ConsoleColor.Gray;
+            if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.DarkGray;
+            else Console.BackgroundColor = ConsoleColor.Black;
         }
+        public void SetPosition(int position0, int position1)
+        {
+            x = position0;
+            y = position1;
+        }
+
         //public bool ClickSquare(int x, int y)
         //{
         //    if(mineField[x, y].ClickSquare())
