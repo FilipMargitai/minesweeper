@@ -80,24 +80,53 @@ namespace Minesweeper
         }
         private string PrintBomb(Square square)
         {
-            if (square.isFlaged) return "🏴";
+            if (square.isFlaged && square.isHidden) return "F";
             else if (square.isHidden) return "-";
             else if(square.isBomb) return "x";
             return Convert.ToString(square.surrounding);
         }
         private void ChoseColor(Square square)
         {
-            if (square.isFlaged) Console.ForegroundColor = ConsoleColor.Blue;
+            if (square.isFlaged && square.isHidden) Console.ForegroundColor = ConsoleColor.Blue;
             else if (square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.Red;
             else if (!square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.White;
             else Console.ForegroundColor = ConsoleColor.Gray;
-            if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.DarkGray;
+            if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.DarkBlue;
             else Console.BackgroundColor = ConsoleColor.Black;
         }
         public void SetPosition(int position0, int position1)
         {
             x = position0;
             y = position1;
+        }
+        public void ClickSquare(int x, int y)
+        {
+            if(mineField[x, y].isBomb)
+            {
+                gameOver = true;
+            }
+            else
+            {
+                if(mineField[x, y].surrounding > 0)
+                {
+                    mineField[x, y].isHidden = false;
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+        public void FlagSquare(int position0, int position1)
+        {
+            if(mineField[position0, position1].isFlaged)
+            {
+                mineField[position0, position1].isFlaged = false;
+            }
+            else
+            {
+                mineField[position0, position1].isFlaged = true;
+            }
         }
 
         //public bool ClickSquare(int x, int y)

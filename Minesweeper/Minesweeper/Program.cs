@@ -14,6 +14,7 @@ namespace Minesweeper
             while (!test.gameOver)
             {
                 bool validInput = false;
+                Console.Clear();
                 test.PrintArray();
                 while (!validInput)
                 {
@@ -38,12 +39,35 @@ namespace Minesweeper
                         test.SetPosition(test.x - 1, test.y);
                         validInput = true;
                     }
-                    //else if (flag)
-                    //else if (click)
-                    //else if (esc)
+                    else if(input.Key == ConsoleKey.Spacebar)
+                    {
+                        test.ClickSquare(test.x, test.y);
+                        validInput = true;
+                    }
+                    else if(input.Key == ConsoleKey.F)
+                    {
+                        test.FlagSquare(test.x, test.y);
+                        validInput = true;
+                    }
+                    else if(input.Key == ConsoleKey.Escape)
+                    {
+                        //Endgame
+                        validInput = true;
+                    }
                 }
 
+            }
+            if (test.gameOver)
+            {
+                foreach(Square square in test.mineField)
+                {
+                    if (square.isBomb && !square.isFlaged)
+                    {
+                        square.isHidden = false;
+                    }
+                }
                 Console.Clear();
+                test.PrintArray();
             }
             //for(int i = 0; i < 15; i++)
             //{

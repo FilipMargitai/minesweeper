@@ -44,5 +44,16 @@ namespace Minesweeper
         {
             isFlaged = true;
         }
+        //public void Get0Around(Square[,] squareArray, int p0, int p1)
+        //{
+        //    if (p0 - 1 >= 0 && p1 - 1 >= 0) TestMine(squareArray, p0 - 1, p1 - 1);
+        //    if (p1 - 1 >= 0) TestMine(squareArray, p0, p1 - 1);
+        //    if (p0 + 1 < squareArray.GetLength(0) && p1 - 1 >= 0) TestMine(squareArray, p0 + 1, p1 - 1);
+        //    if (p0 - 1 >= 0) TestMine(squareArray, p0 - 1, p1);
+        //    if (p0 + 1 < squareArray.GetLength(0)) TestMine(squareArray, p0 + 1, p1);
+        //    if (p0 - 1 >= 0 && p1 + 1 < squareArray.GetLength(1)) TestMine(squareArray, p0 - 1, p1 + 1);
+        //    if (p1 + 1 < squareArray.GetLength(1)) TestMine(squareArray, p0, p1 + 1);
+        //    if (p0 + 1 < squareArray.GetLength(1) && p1 + 1 < squareArray.GetLength(1)) TestMine(squareArray, p0 + 1, p1 + 1);
+        //}
     }
 }
