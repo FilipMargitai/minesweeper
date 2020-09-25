@@ -113,7 +113,8 @@ namespace Minesweeper
                 }
                 else
                 {
-                    
+                    mineField[x, y].has0Revealed = true;
+                    Get0Around(x, y);
                 }
             }
         }
@@ -128,7 +129,25 @@ namespace Minesweeper
                 mineField[position0, position1].isFlaged = true;
             }
         }
-
+        public void Get0Around(int p0, int p1)
+        {
+            if (p0 - 1 >= 0 && p1 - 1 >= 0) TestZero(p0 - 1, p1 - 1);
+            if (p1 - 1 >= 0) TestZero(p0, p1 - 1);
+            if (p0 + 1 < mineField.GetLength(0) && p1 - 1 >= 0) TestZero(p0 + 1, p1 - 1);
+            if (p0 - 1 >= 0) TestZero(p0 - 1, p1);
+            if (p0 + 1 < mineField.GetLength(0)) TestZero(p0 + 1, p1);
+            if (p0 - 1 >= 0 && p1 + 1 < mineField.GetLength(1)) TestZero(p0 - 1, p1 + 1);
+            if (p1 + 1 < mineField.GetLength(1)) TestZero(p0, p1 + 1);
+            if (p0 + 1 < mineField.GetLength(1) && p1 + 1 < mineField.GetLength(1)) TestZero(p0 + 1, p1 + 1);
+        }
+        private void TestZero(int x, int y)
+        {
+            if (mineField[x, y].surrounding == 0 && !mineField[x, y].has0Revealed && !mineField[x, y].isFlaged)
+            {
+                Get0Around(x, y);
+                mineField[x, y].has0Revealed = true;
+            }
+        }
         //public bool ClickSquare(int x, int y)
         //{
         //    if(mineField[x, y].ClickSquare())
