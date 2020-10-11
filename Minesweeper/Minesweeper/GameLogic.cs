@@ -85,10 +85,13 @@ namespace Minesweeper
         }
         private void ChoseColor(Square square)
         {
-            if (square.isFlaged && square.isHidden) Console.ForegroundColor = ConsoleColor.Blue;
+            if (square.isFlaged && square.isHidden) Console.ForegroundColor = ConsoleColor.Cyan;
             else if (square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.Red;
-            else if (!square.isBomb && !square.isHidden) Console.ForegroundColor = ConsoleColor.White;
-            else Console.ForegroundColor = ConsoleColor.Gray;
+            else if (!square.isBomb && !square.isHidden && square.surrounding == 1) Console.ForegroundColor = ConsoleColor.White;
+            else if (!square.isBomb && !square.isHidden && square.surrounding == 2) Console.ForegroundColor = ConsoleColor.Yellow;
+            else if (!square.isBomb && !square.isHidden && square.surrounding > 2) Console.ForegroundColor = ConsoleColor.DarkYellow;
+            else if (!square.isBomb && !square.isHidden && square.surrounding == 0) Console.ForegroundColor = ConsoleColor.DarkGray;
+            else Console.ForegroundColor = ConsoleColor.White;
             if (square == mineField[x, y]) Console.BackgroundColor = ConsoleColor.DarkBlue;
             else Console.BackgroundColor = ConsoleColor.Black;
         }
@@ -146,6 +149,10 @@ namespace Minesweeper
                 mineField[x, y].has0Revealed = true;
                 mineField[x, y].isHidden = false;
                 Get0Around(x, y);
+            }
+            else
+            {
+                mineField[x, y].isHidden = false;
             }
         }
     }

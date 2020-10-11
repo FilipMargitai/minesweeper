@@ -52,6 +52,7 @@ namespace Minesweeper
                     else if(input.Key == ConsoleKey.Escape)
                     {
                         validInput = true;
+                        test.gameOver = true;
                     }
                 }
 
