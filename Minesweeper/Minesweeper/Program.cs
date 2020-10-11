@@ -51,7 +51,6 @@ namespace Minesweeper
                     }
                     else if(input.Key == ConsoleKey.Escape)
                     {
-                        //Endgame
                         validInput = true;
                     }
                 }
@@ -69,16 +68,6 @@ namespace Minesweeper
                 Console.Clear();
                 test.PrintArray();
             }
-            //for(int i = 0; i < 15; i++)
-            //{
-            //    Console.WriteLine();
-            //    int x = int.Parse(Console.ReadLine());
-            //    int y = int.Parse(Console.ReadLine());
-
-            //    Console.Clear();
-            //    if (test.ClickSquare(x, y)) test.PrintArray();
-            //    else break;
-            //}
         }
     }
 }

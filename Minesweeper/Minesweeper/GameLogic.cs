@@ -8,7 +8,6 @@ namespace Minesweeper
     class GameLogic
     {
         private int bombQuantity { get; }
-        //private List<Square> mineField { get; set; }
         public Square[,] mineField { get; set; }
         private static Random randomNumb { get; set; }
         public int x { get; set; }
@@ -33,7 +32,6 @@ namespace Minesweeper
                     mineField[randomX, randomY] = new Square(true);
                     i++;
                 }
-                //mineField.SetValue(new Square(true), randomNumb.Next(mineField.GetLength(0)), randomNumb.Next(mineField.GetLength(1)));
             }
             for (int i = 0; i < mineField.GetLength(0); i++) // filling up non bomb squares
             {
@@ -150,23 +148,5 @@ namespace Minesweeper
                 Get0Around(x, y);
             }
         }
-        //public bool ClickSquare(int x, int y)
-        //{
-        //    if(mineField[x, y].ClickSquare())
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
-
-        //public void PrintTestNull()
-        //{
-        //    foreach (Square square in mineField)
-        //    {
-        //        if (square == null) Console.Write("n ");
-        //        else if (square.isBomb) Console.Write("b ");
-        //        else if (!square.isBomb) Console.Write("- ");
-        //    }
-        //}
     }
 }
