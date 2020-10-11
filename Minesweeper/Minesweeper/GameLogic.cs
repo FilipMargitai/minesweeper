@@ -114,6 +114,7 @@ namespace Minesweeper
                 else
                 {
                     mineField[x, y].has0Revealed = true;
+                    mineField[x, y].isHidden = false;
                     Get0Around(x, y);
                 }
             }
@@ -144,8 +145,9 @@ namespace Minesweeper
         {
             if (mineField[x, y].surrounding == 0 && !mineField[x, y].has0Revealed && !mineField[x, y].isFlaged)
             {
-                Get0Around(x, y);
                 mineField[x, y].has0Revealed = true;
+                mineField[x, y].isHidden = false;
+                Get0Around(x, y);
             }
         }
         //public bool ClickSquare(int x, int y)
