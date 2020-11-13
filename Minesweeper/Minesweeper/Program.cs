@@ -8,7 +8,7 @@ namespace Minesweeper
         static void Main(string[] args)
         {
 
-            GameLogic test = new GameLogic(9, 9, 15);
+            GameLogic test = new GameLogic(9, 9, 1);
             test.GenerateField();
 
             while (!test.gameOver)
@@ -55,19 +55,29 @@ namespace Minesweeper
                         test.gameOver = true;
                     }
                 }
-
-            }
-            if (test.gameOver)
-            {
-                foreach(Square square in test.mineField)
+                test.WinCheck();
+                if (test.gameOver && !test.isWin)
                 {
-                    if (square.isBomb && !square.isFlaged)
+                    foreach (Square square in test.mineField)
                     {
-                        square.isHidden = false;
+                        if (square.isBomb && !square.isFlaged)
+                        {
+                            square.isHidden = false;
+                        }
                     }
+                    Console.Clear();
+                    test.PrintArray();
                 }
-                Console.Clear();
-                test.PrintArray();
+                else if (test.gameOver && test.isWin)
+                {
+                    test.WinCheck();
+                    Console.Clear();
+                    test.PrintArray();
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n\nYou won!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
         }
     }

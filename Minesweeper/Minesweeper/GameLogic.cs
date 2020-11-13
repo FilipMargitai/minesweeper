@@ -13,6 +13,9 @@ namespace Minesweeper
         public int x { get; set; }
         public int y { get; set; }
         public bool gameOver { get; set; }
+        public bool isWin { get; set; }
+        private int flagCount { get; set; }
+        private bool badFlag { get; set; }
         public GameLogic(int _height = 9, int _width = 9, int _bombQuantity = 14)
         {
             bombQuantity = _bombQuantity;
@@ -120,15 +123,15 @@ namespace Minesweeper
                 }
             }
         }
-        public void FlagSquare(int position0, int position1)
+        public void FlagSquare(int p0, int p1)
         {
-            if(mineField[position0, position1].isFlaged)
+            if(mineField[p0, p1].isFlaged)
             {
-                mineField[position0, position1].isFlaged = false;
+                mineField[p0, p1].isFlaged = false;
             }
-            else
+            else if(mineField[p0, p1].isHidden)
             {
-                mineField[position0, position1].isFlaged = true;
+                mineField[p0, p1].isFlaged = true;
             }
         }
         public void Get0Around(int p0, int p1)
@@ -150,9 +153,37 @@ namespace Minesweeper
                 mineField[x, y].isHidden = false;
                 Get0Around(x, y);
             }
-            else
+            else if(!mineField[x, y].isFlaged)
             {
                 mineField[x, y].isHidden = false;
+            }
+        }
+        public void WinCheck()
+        {
+            flagCount = 0;
+            badFlag = false;
+            foreach(Square square in mineField)
+            {
+                if(square.isFlaged)
+                {
+                    flagCount++;
+                    if (!square.isBomb) badFlag = true;
+                }
+            }
+            if (flagCount == bombQuantity && badFlag == false)
+            {
+                gameOver = true;
+                isWin = true;
+            }
+        }
+        public void WinFill()
+        {
+            foreach (Square square in mineField)
+            {
+                if (square.isHidden && !square.isFlaged)
+                {
+                    square.isHidden = false;
+                }
             }
         }
     }
