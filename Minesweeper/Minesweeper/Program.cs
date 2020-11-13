@@ -8,7 +8,7 @@ namespace Minesweeper
         static void Main(string[] args)
         {
 
-            GameLogic test = new GameLogic(9, 9, 1);
+            GameLogic test = new GameLogic(9, 9, 9);
             test.GenerateField();
 
             while (!test.gameOver)
@@ -67,6 +67,10 @@ namespace Minesweeper
                     }
                     Console.Clear();
                     test.PrintArray();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n\nYou lose!");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 else if (test.gameOver && test.isWin)
                 {
@@ -75,7 +79,7 @@ namespace Minesweeper
                     test.PrintArray();
 
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\n\nYou won!");
+                    Console.WriteLine("\n\nYou win!");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }

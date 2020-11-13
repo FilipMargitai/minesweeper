@@ -56,6 +56,8 @@ namespace Minesweeper
         }
         public void PrintArray()
         {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine((bombQuantity - flagCount) + " \n");
             int i = 0;
             foreach (Square square in mineField)
             {
